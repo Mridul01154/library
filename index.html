@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
+<style>
     * {
       margin: 0;
       padding: 0;
@@ -717,7 +717,6 @@
 
     /* ========== RESPONSIVE STYLES FOR PHONE ========== */
     @media (max-width: 768px) {
-      /* Sidebar becomes bottom navigation */
       .sidebar {
         width: 100%;
         height: auto;
@@ -865,7 +864,6 @@
         padding: 8px 12px;
       }
       
-      /* Make tables scroll horizontally on mobile */
       div[style*="overflow-x: auto"] {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
@@ -880,7 +878,6 @@
         font-size: 0.8rem;
       }
       
-      /* Form grid for borrow section */
       .form-grid {
         grid-template-columns: 1fr !important;
         gap: 12px !important;
@@ -894,7 +891,6 @@
         flex: 1;
       }
       
-      /* Modal adjustments */
       .modal-content {
         padding: 20px;
         width: 95%;
@@ -910,7 +906,6 @@
         font-size: 28px;
       }
       
-      /* Toast on mobile */
       .toast {
         bottom: 80px;
         right: 16px;
@@ -920,7 +915,6 @@
         padding: 12px 20px;
       }
       
-      /* Filter section */
       #books-section .section > div:first-of-type {
         flex-direction: column;
       }
@@ -930,19 +924,16 @@
         width: 100%;
       }
       
-      /* Leaderboard on mobile */
       #leaderboardSection > div {
         grid-template-columns: 1fr !important;
       }
       
-      /* Theme switch on mobile */
       .theme-switch-wrapper {
         margin-top: 20px;
         padding: 16px;
       }
     }
     
-    /* Small phones (below 480px) */
     @media (max-width: 480px) {
       .main {
         padding: 16px 12px;
@@ -984,7 +975,6 @@
       }
     }
     
-    /* Landscape mode on phones */
     @media (max-width: 768px) and (orientation: landscape) {
       .sidebar {
         padding: 8px 16px;
@@ -1001,76 +991,8 @@
       .stats-grid {
         grid-template-columns: repeat(4, 1fr);
       }
-}
     }
-
-    /* ========== DARK MODE MOBILE FIXES - MOVED OUTSIDE MEDIA QUERY ========== */
-body.dark-mode {
-  background: #121212 !important;
-}
-
-body.dark-mode .main {
-  background: #121212 !important;
-}
-
-body.dark-mode .sidebar {
-  background: #0a0a0a !important;
-  border-right-color: #2a2a2a !important;
-}
-
-@media (max-width: 768px) {
-  body.dark-mode .sidebar {
-    background: #0a0a0a !important;
-    border-top-color: #2a2a2a !important;
-  }
-  
-  body.dark-mode .main {
-    background: #121212 !important;
-  }
-  
-  body.dark-mode .section,
-  body.dark-mode .card,
-  body.dark-mode .book-card,
-  body.dark-mode .modal-content {
-    background: #1c1c1c !important;
-  }
-  
-  body.dark-mode input,
-  body.dark-mode select,
-  body.dark-mode textarea {
-    background: #252525 !important;
-    color: #e8e0d5 !important;
-  }
-}
-
-/* Light mode ensure white background */
-body:not(.dark-mode) {
-  background: #faf7f0 !important;
-}
-
-body:not(.dark-mode) .main {
-  background: #faf7f0 !important;
-}
-
-body:not(.dark-mode) .section {
-  background: #fffef8 !important;
-}
-
-body:not(.dark-mode) .card {
-  background: #ffffffea !important;
-}
-
-body:not(.dark-mode) .book-card {
-  background: #ffffff !important;
-}
-
-body:not(.dark-mode) input,
-body:not(.dark-mode) select,
-body:not(.dark-mode) textarea {
-  background: white !important;
-  color: #1e1e1e !important;
-}
-  </style>
+</style>
 </head>
 <body>
 
