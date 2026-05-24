@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover" />
   <title>Library Vista | Cream & Black Edition</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -395,7 +395,45 @@
       overflow-y: auto;
       z-index: 100;
       box-shadow: 8px 0 24px rgba(0, 0, 0, 0.08);
-      transition: all 0.2s;
+      transition: transform 0.3s ease;
+    }
+
+    /* Mobile sidebar - hidden by default */
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+        width: 260px;
+        z-index: 1000;
+      }
+      
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      
+      /* Menu button for mobile */
+      .menu-toggle {
+        display: fixed;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        z-index: 1001;
+        background: #0c0c0c;
+        color: #fef8e6;
+        border: none;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        align-items: center;
+        justify-content: center;
+      }
+      
+      body.dark-mode .menu-toggle {
+        background: #1a1a1a;
+        color: #e8e0d5;
+      }
     }
 
     .logo {
@@ -442,290 +480,271 @@
       margin-left: 280px;
       width: calc(100% - 280px);
       padding: 32px 36px;
+      transition: margin-left 0.3s ease;
     }
 
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
-      gap: 18px;
+    /* Mobile responsive styles */
+    @media (max-width: 768px) {
+      .main {
+        margin-left: 0;
+        width: 100%;
+        padding: 70px 16px 20px 16px;
+      }
+      
+      .topbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      
+      .topbar h1 {
+        font-size: 1.6rem;
+        text-align: center;
+      }
+      
+      .search-box {
+        width: 100%;
+        padding: 10px 16px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
+      }
+      
+      .card {
+        padding: 16px 12px;
+      }
+      
+      .card p {
+        font-size: 28px;
+      }
+      
+      .card h3 {
+        font-size: 0.75rem;
+      }
+      
+      .section {
+        padding: 16px;
+        border-radius: 20px;
+      }
+      
+      .section-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      
+      .section-header h2 {
+        font-size: 1.3rem;
+      }
+      
+      button {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+      }
+      
+      /* Table responsive - make scrollable */
+      .section > div[style*="overflow-x: auto"] {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      table {
+        min-width: 600px;
+      }
+      
+      table th, table td {
+        padding: 10px 8px;
+        font-size: 0.85rem;
+      }
+      
+      /* Books grid - 1 column on mobile */
+      .books-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      
+      .book-card {
+        max-width: 100%;
+      }
+      
+      .book-image {
+        height: 150px;
+      }
+      
+      .actions {
+        flex-wrap: wrap;
+      }
+      
+      .actions button {
+        flex: 1;
+        min-width: 70px;
+        font-size: 0.75rem;
+        padding: 8px 12px;
+      }
+      
+      /* Filters row - vertical on mobile */
+      .section > div:first-of-type {
+        flex-direction: column;
+      }
+      
+      #categoryFilter, #availabilityFilter {
+        width: 100% !important;
+      }
+      
+      /* Borrow form grid */
+      .form-grid {
+        grid-template-columns: 1fr !important;
+      }
+      
+      /* Modal on mobile */
+      .modal-content {
+        width: 95%;
+        max-width: 95%;
+        padding: 20px;
+        margin: 10px;
+        border-radius: 28px;
+      }
+      
+      /* Leaderboard on mobile */
+      #leaderboardSection > div {
+        grid-template-columns: 1fr !important;
+      }
+      
+      /* Toast messages */
+      .toast {
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+        text-align: center;
+        font-size: 0.85rem;
+        padding: 12px 20px;
+      }
+      
+      /* Theme switch */
+      .theme-switch-wrapper {
+        padding: 16px;
+      }
+      
+      .theme-switch-wrapper div strong {
+        font-size: 14px;
+      }
+      
+      /* Fine modal */
+      .modal-buttons {
+        flex-direction: column;
+      }
+      
+      .modal-buttons button {
+        width: 100%;
+      }
     }
 
-    .topbar h1 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      background: linear-gradient(130deg, #231f1b, #4a3e2c);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      letter-spacing: -0.3px;
+    /* Small phones (max-width: 480px) */
+    @media (max-width: 480px) {
+      .main {
+        padding: 60px 12px 16px 12px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      
+      .card {
+        padding: 12px;
+      }
+      
+      .card p {
+        font-size: 24px;
+      }
+      
+      .section-header h2 {
+        font-size: 1.1rem;
+      }
+      
+      .book-content h4 {
+        font-size: 1rem;
+      }
+      
+      .book-content p {
+        font-size: 0.85rem;
+      }
+      
+      .stock {
+        font-size: 0.8rem;
+        padding: 4px 8px;
+      }
+      
+      .actions {
+        gap: 6px;
+      }
+      
+      .actions button {
+        font-size: 0.7rem;
+        padding: 6px 10px;
+      }
+      
+      table th, table td {
+        padding: 8px 6px;
+        font-size: 0.75rem;
+      }
+      
+      .status {
+        padding: 3px 8px;
+        font-size: 0.65rem;
+      }
+      
+      .modal-content {
+        padding: 16px;
+      }
+      
+      .modal-content h3 {
+        font-size: 1.2rem;
+      }
+      
+      input, select {
+        padding: 10px 12px;
+        font-size: 14px;
+      }
     }
 
-    .search-box {
-      background: white;
-      padding: 12px 18px;
-      border-radius: 48px;
-      width: 320px;
-      border: 1px solid #e6dccf;
-      outline: none;
-      transition: 0.2s;
-      font-weight: 400;
-      font-size: 0.9rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    /* Tablet styles */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .sidebar {
+        width: 240px;
+      }
+      
+      .main {
+        margin-left: 240px;
+        width: calc(100% - 240px);
+        padding: 24px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+      
+      .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      }
     }
-
-    .search-box:focus {
-      border-color: #a1824f;
-      box-shadow: 0 0 0 3px rgba(161,130,79,0.2);
-    }
-
-    /* cards & sections - creamy elegance */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 24px;
-      margin-bottom: 36px;
-    }
-
-    .card {
-      background: #ffffffea;
-      backdrop-filter: blur(2px);
-      padding: 26px 20px;
-      border-radius: 28px;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(220, 200, 170, 0.3);
-      transition: 0.2s;
-      border: 1px solid #f3ebdd;
-    }
-
-    .card h3 {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 600;
-      color: #6b5a44;
-      margin-bottom: 14px;
-    }
-
-    .card p {
-      font-size: 38px;
-      font-weight: 700;
-      color: #1f1b16;
-      line-height: 1;
-    }
-
-    .section {
-      background: #fffef8;
-      padding: 28px 28px;
-      border-radius: 32px;
-      box-shadow: 0 10px 28px -8px rgba(0, 0, 0, 0.05);
-      margin-bottom: 36px;
-      border: 1px solid #f1e7db;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 26px;
-      flex-wrap: wrap;
-      gap: 16px;
-      border-bottom: 2px dashed #efe2d0;
-      padding-bottom: 12px;
-    }
-
-    .section-header h2 {
-      font-weight: 600;
-      font-size: 1.6rem;
-      color: #2a241d;
-    }
-
-    button {
-      background: #27221c;
-      color: #fff2e2;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 60px;
-      cursor: pointer;
-      transition: 0.2s;
-      font-weight: 500;
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-
-    button:hover {
-      background: #3f372c;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.08);
-    }
-
-    button:active {
-      transform: translateY(1px);
-    }
-
-    .danger {
-      background: #9a3e2c;
-    }
-    .danger:hover {
-      background: #7d2f1f;
-    }
-    .success {
-      background: #2c5f2d;
-    }
-    .success:hover {
-      background: #1e451f;
-    }
-    .warning, .edit-btn {
-      background: #cfa668;
-      color: #1f1b16;
-    }
-    .warning:hover, .edit-btn:hover {
-      background: #b88746;
-      color: #ffffff;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    table th, table td {
-      padding: 14px 12px;
-      text-align: left;
-      border-bottom: 1px solid #eedfcb;
-    }
-    table th {
-      background: #faf3e8;
-      font-weight: 600;
-      color: #2c241c;
-    }
-
-    .status {
-      padding: 5px 12px;
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      display: inline-block;
-    }
-    .available, .active { background: #e4f0e0; color: #1d4d1f; }
-    .borrowed, .inactive { background: #ffe1db; color: #aa3c2a; }
-
-    .books-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 28px;
-    }
-    .book-card {
-      background: #ffffff;
-      border-radius: 28px;
-      overflow: hidden;
-      transition: all 0.25s;
-      border: 1px solid #f2e5d6;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.02);
-    }
-    .book-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 28px -12px rgba(0,0,0,0.1);
-      border-color: #e0cfb9;
-    }
-    .book-image {
-      height: 180px;
-      background: linear-gradient(130deg, #e7daca, #cfbc9f);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: 700;
-      font-size: 1.5rem;
-      text-align: center;
-      padding: 20px;
-      color: #33261b;
-      position: relative;
-    }
-    .book-content h4 { font-weight: 700; margin-bottom: 8px; }
-
-    .stock-high { background: #e5f5e5; color: #1d5620; }
-    .stock-medium { background: #fcf0dc; color: #aa7431; }
-    .stock-low { background: #ffe1db; color: #bc3822; }
-
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
-      justify-content: center;
-      align-items: center;
-      z-index: 1100;
-    }
-    .modal-content {
-      background: #fffef7;
-      padding: 32px;
-      border-radius: 44px;
-      width: 90%;
-      max-width: 520px;
-      box-shadow: 0 25px 40px rgba(0,0,0,0.2);
-      border: 1px solid #eedfc2;
-    }
-    input, select {
-      width: 100%;
-      padding: 14px 16px;
-      border: 1px solid #e0cfbb;
-      border-radius: 48px;
-      background: white;
-      outline: none;
-      transition: 0.2s;
-    }
-    input:focus, select:focus {
-      border-color: #aa8b60;
-      box-shadow: 0 0 0 3px rgba(170,139,96,0.2);
-    }
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #1e1b16;
-      color: #fdf1e2;
-      padding: 14px 28px;
-      border-radius: 60px;
-      z-index: 2100;
-      animation: slideIn 0.25s ease;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-    }
-    .toast.success { background: #2a5c2e; color: #fcf7e8; }
-    .toast.error { background: #aa3c2a; }
-    .toast.warning { background: #d19e48; color: #231f1b; }
-
-    @keyframes slideIn {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-    .hidden { display: none; }
-    @media(max-width: 820px) {
-      .sidebar { width: 100%; height: auto; position: relative; }
-      .main { margin-left: 0; width: 100%; padding: 20px; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-    }
-    .fine-badge { font-weight: bold; background: #fef3d9; padding: 4px 12px; border-radius: 30px; }
-    .actions { display: flex; gap: 8px; flex-wrap: wrap; }
-    .quantity-input { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
   </style>
 </head>
 <body>
 
-<div class="sidebar">
+<!-- Menu toggle button for mobile -->
+<button class="menu-toggle" onclick="toggleSidebar()" style="display: none;">☰</button>
+
+<div class="sidebar" id="sidebar">
   <div class="logo">📚 Library Vista</div>
-  <div class="menu-item active" onclick="showSection('dashboard')">🏠 Dashboard</div>
-  <div class="menu-item" onclick="showSection('books')">📖 Books</div>
-  <div class="menu-item" onclick="showSection('members')">👥 Members</div>
-  <div class="menu-item" onclick="showSection('borrow')">🔄 Borrow / Return</div>
-  <div class="menu-item" onclick="showSection('reports')">📊 Reports</div>
-  <div class="menu-item" onclick="showSection('settings')">⚙️ Settings</div>
+  <div class="menu-item active" onclick="showSection('dashboard'); closeSidebarOnMobile()">🏠 Dashboard</div>
+  <div class="menu-item" onclick="showSection('books'); closeSidebarOnMobile()">📖 Books</div>
+  <div class="menu-item" onclick="showSection('members'); closeSidebarOnMobile()">👥 Members</div>
+  <div class="menu-item" onclick="showSection('borrow'); closeSidebarOnMobile()">🔄 Borrow / Return</div>
+  <div class="menu-item" onclick="showSection('reports'); closeSidebarOnMobile()">📊 Reports</div>
+  <div class="menu-item" onclick="showSection('settings'); closeSidebarOnMobile()">⚙️ Settings</div>
 </div>
 
 <div class="main">
@@ -744,11 +763,13 @@
     </div>
     <div class="section">
       <div class="section-header"><h2>🕮 Recent Borrow Activity</h2></div>
-      <table id="recentBorrowTable">
-        <thead><tr><th>Member</th><th>Book</th><th>Qty</th><th>Issue Date</th><th>Due Date</th><th>Status</th></tr></thead>
-        <tbody id="recentBorrowBody"><tr><td colspan="6" style="text-align:center;">— No recent activity —</td></tr>
-        </tbody>
-       </table>
+      <div style="overflow-x: auto;">
+        <table id="recentBorrowTable">
+          <thead><tr><th>Member</th><th>Book</th><th>Qty</th><th>Issue Date</th><th>Due Date</th><th>Status</th></tr></thead>
+          <tbody id="recentBorrowBody"><tr><td colspan="6" style="text-align:center;">— No recent activity —</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -783,11 +804,11 @@
   <div id="members-section" class="content-section hidden">
     <div class="section">
       <div class="section-header"><h2>👨‍🎓 Member Registry</h2><div><button onclick="openAddMemberModal()">+ Add Member</button><button onclick="exportMembersToCSV()" style="background:#2c5f2d; margin-left:12px;">📥 Export Members</button></div></div>
-      <div style="overflow-x: auto;">
+      <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
         <table id="membersTable"><thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Membership</th><th>Status</th><th>Joined</th><th>💰 Fine</th><th>Actions</th></tr></thead>
         <tbody id="membersTableBody"><tr><td colspan="9" class="loading">Loading members...</td></tr>
         </tbody>
-       </table>
+        </table>
       </div>
     </div>
   </div>
@@ -797,17 +818,19 @@
       <div class="section-header"><h2>📌 Issue / Return Books</h2></div>
       <div class="form-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:20px;">
         <select id="borrowMember"><option value="">Select Member</option></select>
-        <select id="borrowBook" onchange="updateAvailableQuantity(); checkBookSelection();"><option value="">Select Book</option></select>
+        <select id="borrowBook" onchange="updateAvailableQuantity();"><option value="">Select Book</option></select>
         <div class="quantity-input"><input type="number" id="borrowQuantity" min="1" value="1" /><span id="availableStock" style="font-size: 0.85rem;"></span></div>
         <input type="date" id="borrowDate" />
         <button onclick="issueBook()" id="issueBtn">📘 Issue Book(s)</button>
       </div>
       <br><br>
       <h3 style="margin-bottom: 15px;">📋 Currently Borrowed</h3>
-      <table id="borrowedTable"><thead><tr><th>Member</th><th>Book</th><th>Qty</th><th>Issue Date</th><th>Due Date</th><th>Days Left</th><th>Action</th></tr></thead>
-      <tbody id="borrowedTableBody"><tr><td colspan="7" class="loading">Loading...</td></tr>
-      </tbody>
-     </table>
+      <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+        <table id="borrowedTable"><thead><tr><th>Member</th><th>Book</th><th>Qty</th><th>Issue Date</th><th>Due Date</th><th>Days Left</th><th>Action</th></tr></thead>
+        <tbody id="borrowedTableBody"><tr><td colspan="7" class="loading">Loading...</td></tr>
+        </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -904,6 +927,38 @@
 </div>
 
 <script>
+  // Mobile sidebar functions
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('open');
+  }
+  
+  function closeSidebarOnMobile() {
+    if (window.innerWidth <= 768) {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.remove('open');
+    }
+  }
+  
+  // Show/hide menu button based on screen size
+  function handleMenuButtonVisibility() {
+    const menuBtn = document.querySelector('.menu-toggle');
+    if (window.innerWidth <= 768) {
+      menuBtn.style.display = 'flex';
+      menuBtn.style.alignItems = 'center';
+      menuBtn.style.justifyContent = 'center';
+    } else {
+      menuBtn.style.display = 'none';
+      // Ensure sidebar is visible on desktop
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.remove('open');
+    }
+  }
+  
+  // Call on load and resize
+  window.addEventListener('load', handleMenuButtonVisibility);
+  window.addEventListener('resize', handleMenuButtonVisibility);
+
   const API_URL = 'https://library-api-fv0p.onrender.com/api';
   let members = [], books = [], borrowRecords = [], allBorrowRecords = [];
   let bookRatings = [];
@@ -1655,16 +1710,16 @@
       const statsGrid = document.querySelector('#reports-section .stats-grid');
       if (statsGrid && statsGrid.parentNode) statsGrid.parentNode.insertBefore(leaderboardDiv, statsGrid.nextSibling);
     }
-    leaderboardDiv.innerHTML = `<div class="section-header"><h2>🏆 Leaderboard</h2></div><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;"><div><h3 style="margin-bottom: 15px; color: #a1824f;">📚 Most Borrowed Books</h3><table style="width: 100%;"><thead><tr style="background: #faf3e8;"><th>Rank</th><th>Book Title</th><th>Author</th><th>Times Borrowed</th></tr></thead><tbody>${topBooks.map((book, index) => `<tr>
+    leaderboardDiv.innerHTML = `<div class="section-header"><h2>🏆 Leaderboard</h2></div><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;"><div><h3 style="margin-bottom: 15px; color: #a1824f;">📚 Most Borrowed Books</h3><div style="overflow-x: auto;"><table style="width: 100%;"><thead><tr style="background: #faf3e8;"><th>Rank</th><th>Book Title</th><th>Author</th><th>Times Borrowed</th></tr></thead><tbody>${topBooks.map((book, index) => `<tr>
         <td>${index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}th`}</td>
         <td><strong>${escapeHtml(book.title)}</strong></td>
         <td>${escapeHtml(book.author || 'Unknown')}</td>
         <td>${book.total_borrowed} time${book.total_borrowed !== 1 ? 's' : ''}</td>
-      </tr>`).join('')}${topBooks.length === 0 ? '<tr><td colspan="4" style="text-align: center;">No data yet</td></tr>' : ''}</tbody></table></div><div><h3 style="margin-bottom: 15px; color: #a1824f;">👥 Most Active Members</h3><table style="width: 100%;"><thead><tr style="background: #faf3e8;"><th>Rank</th><th>Member Name</th><th>Books Borrowed</th></tr></thead><tbody>${topMembers.map((member, index) => `<tr>
+      </tr>`).join('')}${topBooks.length === 0 ? '<tr><td colspan="4" style="text-align: center;">No data yet</td></tr>' : ''}</tbody></table></div></div><div><h3 style="margin-bottom: 15px; color: #a1824f;">👥 Most Active Members</h3><div style="overflow-x: auto;"><table style="width: 100%;"><thead><tr style="background: #faf3e8;"><th>Rank</th><th>Member Name</th><th>Books Borrowed</th></tr></thead><tbody>${topMembers.map((member, index) => `<tr>
         <td>${index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}th`}</td>
         <td><strong>${escapeHtml(member.name)}</strong></td>
         <td>${member.total_books} book${member.total_books !== 1 ? 's' : ''}</td>
-      </tr>`).join('')}${topMembers.length === 0 ? '<tr><td colspan="3" style="text-align: center;">No data yet</td></tr>' : ''}</tbody></table></div></div>`;
+      </tr>`).join('')}${topMembers.length === 0 ? '<tr><td colspan="3" style="text-align: center;">No data yet</td></tr>' : ''}</tbody></table></div></div></div>`;
   }
 
   async function refreshReports() {
