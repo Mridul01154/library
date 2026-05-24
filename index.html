@@ -1947,17 +1947,60 @@
       const statsGrid = document.querySelector('#reports-section .stats-grid');
       if (statsGrid && statsGrid.parentNode) statsGrid.parentNode.insertBefore(leaderboardDiv, statsGrid.nextSibling);
     }
-    leaderboardDiv.innerHTML = `<div class="section-header"><h2>🏆 Leaderboard</h2></div><div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;"><div><h3 style="margin-bottom: 15px; color: #a1824f;">📚 Most Borrowed Books</h3><table style="width: 100%;"><thead><tr style="background: #faf3e8;"><th>Rank</th><th>Book Title</th><th>Author</th><th>Times Borrowed</th></tr></thead><tbody>${topBooks.map((book, index) => `<tr>
-        <td>${index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}th`}</td>
-        <td><strong>${escapeHtml(book.title)}</strong></td>
-        <td>${escapeHtml(book.author || 'Unknown')}</td>
-        <td>${book.total_borrowed} time${book.total_borrowed !== 1 ? 's' : ''}</td>
-      </tr>`).join('')}${topBooks.length === 0 ? '<tr><td colspan="4" style="text-align: center;">No data yet</td><tr>' : ''}</tbody></table></div><div><h3 style="margin-bottom: 15px; color: #a1824f;">👥 Most Active Members</h3><table style="width: 100%;"><thead><tr style="background: #faf3e8;"><th>Rank</th><th>Member Name</th><th>Books Borrowed</th></tr></thead><tbody>${topMembers.map((member, index) => `<tr>
-        <td>${index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}th`}</td>
-        <td><strong>${escapeHtml(member.name)}</strong></td>
-        <td>${member.total_books} book${member.total_books !== 1 ? 's' : ''}</td>
-      </tr>`).join('')}${topMembers.length === 0 ? '<tr><td colspan="3" style="text-align: center;">No data yet</td></tr>' : ''}</tbody></table></div></div>`;
-  }
+    leaderboardDiv.innerHTML = `<div class="section-header"><h2>🏆 Leaderboard</h2></div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
+        <div>
+          <h3 style="margin-bottom: 15px; color: #a1824f;">📚 Most Borrowed Books</h3>
+          <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+            <table style="min-width: 300px; width: 100%;">
+              <thead>
+                <tr style="background: #faf3e8;">
+                  <th>Rank</th>
+                  <th>Book Title</th>
+                  <th>Author</th>
+                  <th>Times Borrowed</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${topBooks.map((book, index) => `
+                  <tr>
+                    <td>${index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}th`}</td>
+                    <td><strong>${escapeHtml(book.title)}</strong></td>
+                    <td>${escapeHtml(book.author || 'Unknown')}</td>
+                    <td>${book.total_borrowed} time${book.total_borrowed !== 1 ? 's' : ''}</td>
+                  </tr>
+                `).join('')}
+                ${topBooks.length === 0 ? '<tr><td colspan="4" style="text-align: center;">No data yet</td></tr>' : ''}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <h3 style="margin-bottom: 15px; color: #a1824f;">👥 Most Active Members</h3>
+          <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+            <table style="min-width: 300px; width: 100%;">
+              <thead>
+                <tr style="background: #faf3e8;">
+                  <th>Rank</th>
+                  <th>Member Name</th>
+                  <th>Books Borrowed</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${topMembers.map((member, index) => `
+                  <tr>
+                    <td>${index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}th`}</td>
+                    <td><strong>${escapeHtml(member.name)}</strong></td>
+                    <td>${member.total_books} book${member.total_books !== 1 ? 's' : ''}</td>
+                  </tr>
+                `).join('')}
+                ${topMembers.length === 0 ? '<tr><td colspan="3" style="text-align: center;">No data yet</td></tr>' : ''}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>`;
+}
 
   async function refreshReports() {
     try {
