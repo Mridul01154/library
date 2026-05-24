@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover" />
   <title>Library Vista | Cream & Black Edition</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -591,12 +591,16 @@
     table {
       width: 100%;
       border-collapse: collapse;
+      overflow-x: auto;
+      display: block;
     }
+    
     table th, table td {
       padding: 14px 12px;
       text-align: left;
       border-bottom: 1px solid #eedfcb;
     }
+    
     table th {
       background: #faf3e8;
       font-weight: 600;
@@ -706,14 +710,298 @@
       to { transform: translateX(0); opacity: 1; }
     }
     .hidden { display: none; }
-    @media(max-width: 820px) {
-      .sidebar { width: 100%; height: auto; position: relative; }
-      .main { margin-left: 0; width: 100%; padding: 20px; }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-    }
+    
     .fine-badge { font-weight: bold; background: #fef3d9; padding: 4px 12px; border-radius: 30px; }
     .actions { display: flex; gap: 8px; flex-wrap: wrap; }
     .quantity-input { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+    /* ========== RESPONSIVE STYLES FOR PHONE ========== */
+    @media (max-width: 768px) {
+      /* Sidebar becomes bottom navigation */
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        left: 0;
+        right: 0;
+        padding: 12px 16px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 8px;
+        z-index: 1000;
+        background: #0c0c0c;
+        border-top: 1px solid #2a2a2a;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+      }
+      
+      body.dark-mode .sidebar {
+        background: #0a0a0a;
+        border-top-color: #2a2a2a;
+      }
+      
+      .logo {
+        display: none;
+      }
+      
+      .menu-item {
+        padding: 8px 12px;
+        font-size: 0.75rem;
+        margin-bottom: 0;
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
+        border-radius: 30px;
+        flex: 1;
+        justify-content: center;
+      }
+      
+      .menu-item span:first-child {
+        font-size: 1.2rem;
+      }
+      
+      .main {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px 16px;
+        margin-bottom: 70px;
+      }
+      
+      .topbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      
+      .topbar h1 {
+        font-size: 1.6rem;
+        text-align: center;
+      }
+      
+      .search-box {
+        width: 100%;
+        padding: 10px 16px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      
+      .card {
+        padding: 16px 12px;
+      }
+      
+      .card p {
+        font-size: 28px;
+      }
+      
+      .card h3 {
+        font-size: 0.7rem;
+      }
+      
+      .section {
+        padding: 16px;
+        margin-bottom: 20px;
+      }
+      
+      .section-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      
+      .section-header h2 {
+        font-size: 1.3rem;
+      }
+      
+      .section-header div {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      
+      button {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+      }
+      
+      .books-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      
+      .book-card {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .book-image {
+        height: 140px;
+      }
+      
+      .book-content {
+        padding: 12px;
+      }
+      
+      .book-content h4 {
+        font-size: 1rem;
+      }
+      
+      .book-content p {
+        font-size: 0.85rem;
+      }
+      
+      .actions {
+        flex-wrap: wrap;
+      }
+      
+      .actions button {
+        flex: 1;
+        min-width: 70px;
+        font-size: 0.7rem;
+        padding: 8px 12px;
+      }
+      
+      /* Make tables scroll horizontally on mobile */
+      div[style*="overflow-x: auto"] {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      table {
+        min-width: 600px;
+      }
+      
+      table th, table td {
+        padding: 10px 8px;
+        font-size: 0.8rem;
+      }
+      
+      /* Form grid for borrow section */
+      .form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      
+      .quantity-input {
+        flex-wrap: wrap;
+      }
+      
+      .quantity-input input {
+        flex: 1;
+      }
+      
+      /* Modal adjustments */
+      .modal-content {
+        padding: 20px;
+        width: 95%;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      
+      .modal-content h3 {
+        font-size: 1.2rem;
+      }
+      
+      .star-rating {
+        font-size: 28px;
+      }
+      
+      /* Toast on mobile */
+      .toast {
+        bottom: 80px;
+        right: 16px;
+        left: 16px;
+        text-align: center;
+        font-size: 0.85rem;
+        padding: 12px 20px;
+      }
+      
+      /* Filter section */
+      #books-section .section > div:first-of-type {
+        flex-direction: column;
+      }
+      
+      #books-section select, 
+      #books-section button {
+        width: 100%;
+      }
+      
+      /* Leaderboard on mobile */
+      #leaderboardSection > div {
+        grid-template-columns: 1fr !important;
+      }
+      
+      /* Theme switch on mobile */
+      .theme-switch-wrapper {
+        margin-top: 20px;
+        padding: 16px;
+      }
+    }
+    
+    /* Small phones (below 480px) */
+    @media (max-width: 480px) {
+      .main {
+        padding: 16px 12px;
+        margin-bottom: 80px;
+      }
+      
+      .stats-grid {
+        gap: 8px;
+      }
+      
+      .card {
+        padding: 12px 8px;
+      }
+      
+      .card p {
+        font-size: 22px;
+      }
+      
+      .card h3 {
+        font-size: 0.6rem;
+      }
+      
+      .section-header h2 {
+        font-size: 1.1rem;
+      }
+      
+      .menu-item {
+        padding: 6px 8px;
+        font-size: 0.65rem;
+      }
+      
+      .menu-item span:first-child {
+        font-size: 1rem;
+      }
+      
+      button {
+        padding: 8px 12px;
+        font-size: 0.7rem;
+      }
+    }
+    
+    /* Landscape mode on phones */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .sidebar {
+        padding: 8px 16px;
+      }
+      
+      .menu-item {
+        padding: 6px 10px;
+      }
+      
+      .main {
+        margin-bottom: 60px;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
   </style>
 </head>
 <body>
@@ -744,11 +1032,13 @@
     </div>
     <div class="section">
       <div class="section-header"><h2>🕮 Recent Borrow Activity</h2></div>
-      <table id="recentBorrowTable">
-        <thead><tr><th>Member</th><th>Book</th><th>Qty</th><th>Issue Date</th><th>Due Date</th><th>Status</th></tr></thead>
-        <tbody id="recentBorrowBody"><tr><td colspan="6" style="text-align:center;">— No recent activity —</td></tr>
-        </tbody>
-       </table>
+      <div style="overflow-x: auto;">
+        <table id="recentBorrowTable">
+          <thead><tr><th>Member</th><th>Book</th><th>Qty</th><th>Issue Date</th><th>Due Date</th><th>Status</th></tr></thead>
+          <tbody id="recentBorrowBody"><tr><td colspan="6" style="text-align:center;">— No recent activity —</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -787,7 +1077,7 @@
         <table id="membersTable"><thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Membership</th><th>Status</th><th>Joined</th><th>💰 Fine</th><th>Actions</th></tr></thead>
         <tbody id="membersTableBody"><tr><td colspan="9" class="loading">Loading members...</td></tr>
         </tbody>
-       </table>
+        </table>
       </div>
     </div>
   </div>
@@ -797,17 +1087,19 @@
       <div class="section-header"><h2>📌 Issue / Return Books</h2></div>
       <div class="form-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:20px;">
         <select id="borrowMember"><option value="">Select Member</option></select>
-        <select id="borrowBook" onchange="updateAvailableQuantity(); checkBookSelection();"><option value="">Select Book</option></select>
+        <select id="borrowBook" onchange="updateAvailableQuantity();"><option value="">Select Book</option></select>
         <div class="quantity-input"><input type="number" id="borrowQuantity" min="1" value="1" /><span id="availableStock" style="font-size: 0.85rem;"></span></div>
         <input type="date" id="borrowDate" />
         <button onclick="issueBook()" id="issueBtn">📘 Issue Book(s)</button>
       </div>
       <br><br>
       <h3 style="margin-bottom: 15px;">📋 Currently Borrowed</h3>
-      <table id="borrowedTable"><thead><tr><th>Member</th><th>Book</th><th>Qty</th><th>Issue Date</th><th>Due Date</th><th>Days Left</th><th>Action</th></tr></thead>
-      <tbody id="borrowedTableBody"><tr><td colspan="7" class="loading">Loading...</td></tr>
-      </tbody>
-     </table>
+      <div style="overflow-x: auto;">
+        <table id="borrowedTable"><thead><tr><th>Member</th><th>Book</th><th>Qty</th><th>Issue Date</th><th>Due Date</th><th>Days Left</th><th>Action</th></tr></thead>
+        <tbody id="borrowedTableBody"><tr><td colspan="7" class="loading">Loading...<\/td></tr>
+        </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -968,7 +1260,7 @@
     try { const res=await fetch(`${API_URL}/members`); 
       if(!res.ok)throw new Error(); members=await res.json(); 
       displayMembers(members); return members; 
-    } catch(err){ document.getElementById('membersTableBody').innerHTML=`<tr><td colspan="9" class="error-message">⚠️ Members load failed</td></tr>`; return [];} 
+    } catch(err){ document.getElementById('membersTableBody').innerHTML=`</td><td colspan="9" class="error-message">⚠️ Members load failed</td>`; return [];} 
   }
   function displayMembers(list) { 
     const tbody=document.getElementById('membersTableBody'); 
@@ -984,7 +1276,7 @@
       <td>${m.joined_date?new Date(m.joined_date).toLocaleDateString():new Date().toLocaleDateString()}</td>
       <td style="background:${hasFine?'#ffe4db':'#e5f5e5'};font-weight:bold;">₹${fb.toFixed(2)}</td>
       <td class="actions"><button class="edit-btn" onclick="openEditMemberModal(${m.id})">✏️ Edit</button><button class="danger" onclick="deleteMember(${m.id})">🗑️ Del</button>${hasFine?`<button class="warning" onclick="openFineModal(${m.id},'${escapeHtml(m.name)}',${fb})">💰 Pay</button>`:''}</td>
-    </tr>`; }).join('');}
+     </tr>`; }).join('');}
   async function saveMember() { 
     const id=document.getElementById('editMemberId').value; 
     const data={ name:document.getElementById('memberName').value, email:document.getElementById('memberEmail').value, phone:document.getElementById('memberPhone').value, membership_type:document.getElementById('memberType').value, status:document.getElementById('memberStatus').value }; 
@@ -1305,7 +1597,7 @@
         <td>${rec.due_date}</td>
         <td>${statusHtml}</td>
         <td><button class="success" onclick="returnBook(${rec.id})">📖 Return</button></td>
-      </tr>`;
+       </tr>`;
     }).join('');
   }
 
@@ -1660,7 +1952,7 @@
         <td><strong>${escapeHtml(book.title)}</strong></td>
         <td>${escapeHtml(book.author || 'Unknown')}</td>
         <td>${book.total_borrowed} time${book.total_borrowed !== 1 ? 's' : ''}</td>
-      </tr>`).join('')}${topBooks.length === 0 ? '<tr><td colspan="4" style="text-align: center;">No data yet</td></tr>' : ''}</tbody></table></div><div><h3 style="margin-bottom: 15px; color: #a1824f;">👥 Most Active Members</h3><table style="width: 100%;"><thead><tr style="background: #faf3e8;"><th>Rank</th><th>Member Name</th><th>Books Borrowed</th></tr></thead><tbody>${topMembers.map((member, index) => `<tr>
+      </tr>`).join('')}${topBooks.length === 0 ? '<tr><td colspan="4" style="text-align: center;">No data yet</td><tr>' : ''}</tbody></table></div><div><h3 style="margin-bottom: 15px; color: #a1824f;">👥 Most Active Members</h3><table style="width: 100%;"><thead><tr style="background: #faf3e8;"><th>Rank</th><th>Member Name</th><th>Books Borrowed</th></tr></thead><tbody>${topMembers.map((member, index) => `<tr>
         <td>${index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : `${index + 1}th`}</td>
         <td><strong>${escapeHtml(member.name)}</strong></td>
         <td>${member.total_books} book${member.total_books !== 1 ? 's' : ''}</td>
